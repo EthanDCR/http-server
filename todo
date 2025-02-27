@@ -1,0 +1,118 @@
+How to Approach Building Your HTTP Server
+
+Instead of thinking of it as "one big project," break it into smaller self-contained problems that you can solve one by one.
+📌 Step 1: Open a Server Socket
+
+👉 Goal: Write a C program that creates a socket and listens for connections on a port.
+🔍 What to figure out:
+
+    How do you create a TCP socket in C?
+    How do you bind it to a port? (e.g., 8080)
+    How do you make it listen for incoming connections?
+
+💡 Hint: Look into socket(), bind(), and listen().
+
+✅ Checkpoint: If you run your program and check with netstat -an | grep 8080, you should see your server listening.
+📌 Step 2: Accept Client Connections
+
+👉 Goal: Accept a connection and print whatever the client sends.
+🔍 What to figure out:
+
+    How do you use accept() to handle incoming requests?
+    How do you read data from a socket?
+
+💡 Hint: Try using recv() and print what you get when you connect with telnet localhost 8080.
+
+✅ Checkpoint: When you connect with telnet, your program should print raw HTTP request data like this:
+
+GET / HTTP/1.1
+Host: localhost
+User-Agent: Mozilla/5.0
+
+📌 Step 3: Send a Basic HTTP Response
+
+👉 Goal: Respond to a request with a simple Hello, World! HTML page.
+🔍 What to figure out:
+
+    What does an HTTP response look like?
+    How do you send data over a socket in C?
+
+💡 Hint: A valid HTTP response starts with:
+
+HTTP/1.1 200 OK
+Content-Type: text/html
+
+<html><body>Hello, World!</body></html>
+
+✅ Checkpoint: When you visit localhost:8080 in your browser, you should see "Hello, World!".
+📌 Step 4: Serve Actual HTML Files
+
+👉 Goal: Read an .html file from disk and send it in the response.
+🔍 What to figure out:
+
+    How do you open and read files in C?
+    How do you modify the response to serve a real file?
+
+💡 Hint: Try using fopen() and fread().
+
+✅ Checkpoint: If you put an index.html file in a folder, your server should serve it when requested.
+📌 Step 5: Parse HTTP Requests
+
+👉 Goal: Serve different files based on the request URL.
+🔍 What to figure out:
+
+    How do you extract the requested file from the HTTP request?
+    How do you handle cases like GET /about.html?
+
+💡 Hint: Look at the first line of the request (GET /index.html HTTP/1.1) and extract the filename.
+
+✅ Checkpoint: If you visit localhost:8080/about.html, it should serve about.html from disk.
+📌 Step 6: Handle Multiple Clients
+
+👉 Goal: Make your server handle more than one client at a time.
+🔍 What to figure out:
+
+    How do you make your server handle multiple connections?
+    What’s the difference between blocking and non-blocking sockets?
+    Can you use multi-threading or forking to handle multiple requests?
+
+💡 Hint: Look into fork() or pthread_create().
+
+✅ Checkpoint: Your server should handle multiple browser requests without freezing.
+General Learning Strategy
+🚀 1. Experiment With Small Tests
+
+    Before writing the full server, experiment with mini-tests:
+        Create a socket and test if it’s listening.
+        Try printing incoming data.
+        Hardcode an HTTP response and see if the browser displays it.
+
+🧐 2. Research & Debug Independently
+
+    When stuck, search online using targeted questions like:
+        "How to create a TCP socket in C?"
+        "How to read from a socket in C?"
+        "How does an HTTP response work?"
+
+📝 3. Take Notes & Reflect
+
+    As you solve each challenge, write down what you learned. This will help you when debugging later.
+
+💥 4. Don’t Rush Features
+
+    If something isn’t working, simplify it and debug step by step.
+
+When You’re Stuck
+
+If you hit a roadblock and feel like you have no idea what to do next, let me know:
+
+    What part you’re struggling with.
+    What you’ve tried.
+    What results/errors you’re seeing.
+
+This way, I can nudge you in the right direction without spoiling the solution.
+Final Words
+
+You're at the perfect point to start this project. You already know enough C to work through the problem logically. The key is to take it one step at a time rather than worrying about the full thing.
+
+If you tackle these steps, by the end, you’ll have built a fully functional web server from scratch in C—which is a huge milestone. 🚀

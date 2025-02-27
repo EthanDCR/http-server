@@ -1,0 +1,17 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-o",
+      "bin/http-server",
+      "src/main.c"
+    ],
+    "directory": "/home/ethan/projects/http-server",
+    "file": "/home/ethan/projects/http-server/src/main.c",
+    "output": "/home/ethan/projects/http-server/bin/http-server"
+  }
+]
