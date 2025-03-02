@@ -15,7 +15,7 @@ all: $(EXEC)
 $(EXEC): $(SRC)
 	$(CC) $(CFLAGS) $^ -o $@
 
-# Target to run the game
+# Target to run the program
 run: $(EXEC)
 	./$(EXEC)
 
